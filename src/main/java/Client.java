@@ -43,6 +43,14 @@ public class Client {
                 }
                 if (br.ready()) {
                     clientCommand = br.readLine();
+                    if (clientCommand.equals("/exit")) {
+                        out.writeUTF("/exit");
+                        out.flush();
+                        in.close();
+                        out.close();
+                        System.out.println("You have disconected from server");
+                        socket.close();
+                    }
                     out.writeUTF(clientCommand);
                     out.flush();
                 }
@@ -54,4 +62,6 @@ public class Client {
         }
     }
 }
+
+
 
